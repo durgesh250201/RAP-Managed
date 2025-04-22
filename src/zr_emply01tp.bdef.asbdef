@@ -1,0 +1,110 @@
+/* managed;
+strict ( 2 );
+with draft;
+extensible
+{
+  with additional save;
+  with determinations on modify;
+  with determinations on save;
+  with validations on save;
+} */
+managed implementation in class ZBP_R_Emply01TP unique;
+strict ( 2 );
+//with draft;
+
+define behavior for ZR_Emply01TP alias Emply
+
+// persistent table ZDRM_EMPTB
+//extensible
+//draft table ZEMPLY00D
+with unmanaged save
+//query ZR_Emply_D
+//etag master LocalLastChangedAt
+lock master
+//total etag LastChangedAt
+authorization master ( instance )
+
+{
+  field ( readonly )
+  LocalCreatedBy,
+  LocalCreatedAt,
+  LocalLastChangedBy,
+  LocalLastChangedAt,
+  LastChangedAt;
+
+  field ( mandatory : create )
+  EID;
+  field ( readonly : update )
+  EID;
+
+  create;
+  update;
+  delete;
+
+  /* draft action Edit;
+   draft action Activate;
+   draft action Discard;
+   draft action Resume;
+   draft determine action Prepare; */
+  action ( features : instance ) Approval result [1] $self;
+
+  mapping for zdrm_emptb corresponding
+    {
+      EID                = EID;
+      Fname              = FNAME;
+      Lname              = LNAME;
+      Gender             = GENDER;
+      Dept               = DEPT;
+      Status             = STATUS;
+      Doj                = DOJ;
+      Dol                = DOL;
+      Salary             = SALARY;
+      Currency           = CURRENCY;
+      LocalCreatedBy     = LOCAL_CREATED_BY;
+      LocalCreatedAt     = LOCAL_CREATED_AT;
+      LocalLastChangedBy = LOCAL_LAST_CHANGED_BY;
+      LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+      LastChangedAt      = LAST_CHANGED_AT;
+    }
+
+  association _EmpSkl { create; }
+}
+
+define behavior for ZR_EmpSklTP alias EmpSkl
+implementation in class ZBP_R_EmpSklTP unique
+with unmanaged save
+//persistent table ZDRM_EMPSK
+// extensible
+//draft table ZEMPSKL00D
+// etag master LocalLastChangedAt
+lock dependent by _Emply
+authorization dependent by _Emply
+
+{
+  field ( readonly )
+  EID;
+  //LocalLastChangedAt;
+
+  field ( readonly : update )
+  SID;
+
+
+  update;
+  delete;
+
+  mapping for zdrm_empsk corresponding
+    {
+      EID                = EID;
+      SID                = SID;
+      Sname              = SNAME;
+      Exp                = EXP;
+      Hotskill           = HOTSKILL;
+      LocalCreatedBy     = LOCAL_CREATED_BY;
+      LocalCreatedAt     = LOCAL_CREATED_AT;
+      LocalLastChangedBy = LOCAL_LAST_CHANGED_BY;
+      LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+      LastChangedAt      = LAST_CHANGED_AT;
+    }
+
+  association _Emply;
+}

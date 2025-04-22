@@ -1,0 +1,36 @@
+projection;
+strict ( 2 );
+define behavior for ZC_EmplTP alias Empl
+use etag
+
+{
+  use create;
+  use update;
+  use delete;
+
+  use action SetStatusEmployment;
+  use association _Skills { create; }
+
+}
+
+define behavior for ZC_Skills02TP alias Skills
+use etag
+
+{
+  use update;
+  use delete;
+
+  use association _Empl;
+  use association _ESkillHist { create; }
+}
+
+define behavior for ZC_ESkillHistTP alias ESkillHist
+use etag
+
+{
+  use update;
+  use delete;
+
+  use association _Empl;
+  use association _Skills;
+}

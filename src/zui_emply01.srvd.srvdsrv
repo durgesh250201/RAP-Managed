@@ -1,0 +1,6 @@
+@AbapCatalog.extensibility.extensible: true
+@ObjectModel.leadingEntity.name: 'ZC_Emply01TP'
+define service ZUI_Emply01 {
+  expose ZC_EMPLY01TP as Emply;
+  expose ZC_EMPSKLTP as EmpSkl;
+}

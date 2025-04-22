@@ -1,0 +1,114 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'ESkillHist', 
+    typeNamePlural: 'ESkillHists', 
+    title: {
+      type: #STANDARD, 
+      label: 'ESkillHist', 
+      value: 'ShID'
+    }
+  }, 
+  presentationVariant: [ {
+    sortOrder: [ {
+      by: 'ShID', 
+      direction: #DESC
+    } ], 
+    visualizations: [ {
+      type: #AS_LINEITEM
+    } ]
+  } ]
+}
+annotate view ZC_ESkillHistTP with
+{
+  @UI.facet: [ {
+    id: 'idESkillHist', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'ESkillHist', 
+    position: 10 
+  } ]
+  @UI.lineItem: [ {
+    position: 10 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 10 
+  } ]
+  SID;
+  
+  @UI.lineItem: [ {
+    position: 20 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 20 
+  } ]
+  ShID;
+  
+  @UI.lineItem: [ {
+    position: 30 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 30 
+  } ]
+  EID;
+  
+  @UI.lineItem: [ {
+    position: 40 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 40 
+  } ]
+  Projname;
+  
+  @UI.lineItem: [ {
+    position: 50 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 50 
+  } ]
+  Projyear;
+  
+  @UI.lineItem: [ {
+    position: 60 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 60 
+  } ]
+  LocalCreatedBy;
+  
+  @UI.lineItem: [ {
+    position: 70 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 70 
+  } ]
+  LocalCreatedAt;
+  
+  @UI.lineItem: [ {
+    position: 80 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 80 
+  } ]
+  LocalLastChangedBy;
+  
+  @UI.hidden: true
+  LocalLastChangedAt;
+  
+  @UI.lineItem: [ {
+    position: 100 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 100 
+  } ]
+  LastChangedAt;
+}

@@ -1,0 +1,114 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'EmpSkl', 
+    typeNamePlural: 'EmpSkls', 
+    title: {
+      type: #STANDARD, 
+      label: 'EmpSkl', 
+      value: 'SID'
+    }
+  }, 
+  presentationVariant: [ {
+    sortOrder: [ {
+      by: 'SID', 
+      direction: #DESC
+    } ], 
+    visualizations: [ {
+      type: #AS_LINEITEM
+    } ]
+  } ]
+}
+annotate view ZC_EmpSklTP with
+{
+  @UI.facet: [ {
+    id: 'idEmpSkl', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'EmpSkl', 
+    position: 10 
+  } ]
+  @UI.lineItem: [ {
+    position: 10 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 10 
+  } ]
+  EID;
+  
+  @UI.lineItem: [ {
+    position: 20 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 20 
+  } ]
+  SID;
+  
+  @UI.lineItem: [ {
+    position: 30 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 30 
+  } ]
+  Sname;
+  
+  @UI.lineItem: [ {
+    position: 40 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 40 
+  } ]
+  Exp;
+  
+  @UI.lineItem: [ {
+    position: 50 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 50 
+  } ]
+  Hotskill;
+  
+  @UI.lineItem: [ {
+    position: 60 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 60 
+  } ]
+  LocalCreatedBy;
+  
+  @UI.lineItem: [ {
+    position: 70 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 70 
+  } ]
+  LocalCreatedAt;
+  
+  @UI.lineItem: [ {
+    position: 80 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 80 
+  } ]
+  LocalLastChangedBy;
+  
+  @UI.hidden: true
+  LocalLastChangedAt;
+  
+  @UI.lineItem: [ {
+    position: 100 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 100 
+  } ]
+  LastChangedAt;
+}

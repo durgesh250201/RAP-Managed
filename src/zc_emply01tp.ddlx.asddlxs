@@ -1,0 +1,151 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'Emply', 
+    typeNamePlural: 'Emplys', 
+    title: {
+      type: #STANDARD, 
+      label: 'Emply', 
+      value: 'EID'
+    }
+  }, 
+  presentationVariant: [ {
+    sortOrder: [ {
+      by: 'EID', 
+      direction: #DESC
+    } ], 
+    visualizations: [ {
+      type: #AS_LINEITEM
+    } ]
+  } ]
+}
+annotate view ZC_Emply01TP with
+{
+  @UI.facet: [ {
+    id: 'idCollection', 
+    type: #COLLECTION, 
+    label: 'Emply', 
+    position: 10 
+  }, 
+  {
+    id: 'idIdentification', 
+    parentId: 'idCollection', 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'General Information', 
+    position: 20 
+  }, 
+  {
+    id: 'idEmpSkl', 
+    type: #LINEITEM_REFERENCE, 
+    label: 'EmpSkl', 
+    position: 30 , 
+    targetElement: '_EmpSkl'
+  } ]
+  @UI.lineItem: [ {
+    position: 10 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 10 
+  } ]
+  @UI.selectionField: [ {
+    position: 10 
+  } ]
+  EID;
+  
+  @UI.lineItem: [ {
+    position: 20 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 20 
+  } ]
+  Fname;
+  
+  @UI.lineItem: [ {
+    position: 30 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 30 
+  } ]
+  Lname;
+  
+  @UI.lineItem: [ {
+    position: 40 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 40 
+  } ]
+  Gender;
+  
+  @UI.lineItem: [ {
+    position: 50 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 50 
+  } ]
+  Dept;
+  
+  @UI.lineItem: [ {
+    position: 60 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 60 
+  } ]
+  Status;
+  
+  @UI.lineItem: [ {
+    position: 70 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 70 
+  } ]
+  Doj;
+  
+  @UI.lineItem: [ {
+    position: 80 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 80 
+  } ]
+  Dol;
+  
+  @UI.lineItem: [ {
+    position: 90 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 90 
+  } ]
+  Salary;
+  
+  @UI.lineItem: [ {
+    position: 100 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 100 
+  } ]
+  Currency;
+  
+  @UI.hidden: true
+  LocalCreatedBy;
+  
+  @UI.hidden: true
+  LocalCreatedAt;
+  
+  @UI.hidden: true
+  LocalLastChangedBy;
+  
+  @UI.hidden: true
+  LocalLastChangedAt;
+  
+  @UI.hidden: true
+  LastChangedAt;
+}

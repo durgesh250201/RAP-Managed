@@ -1,0 +1,125 @@
+managed;
+strict ( 2 );
+define behavior for ZR_EmplTP alias Empl
+implementation in class ZBP_R_EmplTP unique
+persistent table zdrm_emptb
+etag master LocalLastChangedAt
+lock master
+authorization master ( global )
+
+{
+  field ( readonly )
+  LocalCreatedBy,
+  LocalCreatedAt,
+  LocalLastChangedBy,
+  LocalLastChangedAt,
+  LastChangedAt;
+
+  field ( readonly : update )
+  EID;
+
+  field ( mandatory ) Fname, Lname, Dept;
+
+  create;
+  update;
+  delete;
+
+  validation validate_mandatory_fields on save { field Currency; create; update; }
+  determination set_default_status on save { create; }
+  action SetStatusEmployment result [1] $self;
+  mapping for zdrm_emptb
+    {
+      EID                = EID;
+      Fname              = FNAME;
+      Lname              = LNAME;
+      Gender             = GENDER;
+      Dept               = DEPT;
+      Status             = STATUS;
+      Doj                = DOJ;
+      Dol                = DOL;
+      Salary             = SALARY;
+      Currency           = CURRENCY;
+      LocalCreatedBy     = LOCAL_CREATED_BY;
+      LocalCreatedAt     = LOCAL_CREATED_AT;
+      LocalLastChangedBy = LOCAL_LAST_CHANGED_BY;
+      LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+      LastChangedAt      = LAST_CHANGED_AT;
+    }
+
+  association _Skills { create; }
+}
+
+define behavior for ZR_Skills02TP alias Skills
+implementation in class ZBP_R_Skills02TP unique
+persistent table zdrm_empsk
+etag master LocalLastChangedAt
+lock dependent by _Empl
+authorization dependent by _Empl
+
+{
+  field ( readonly )
+  EID,
+  LocalLastChangedAt;
+
+  field ( readonly : update )
+  SID;
+
+
+  update;
+  delete;
+
+  mapping for zdrm_empsk
+    {
+      EID                = EID;
+      SID                = SID;
+      Sname              = SNAME;
+      Exp                = EXP;
+      Hotskill           = HOTSKILL;
+      LocalCreatedBy     = LOCAL_CREATED_BY;
+      LocalCreatedAt     = LOCAL_CREATED_AT;
+      LocalLastChangedBy = LOCAL_LAST_CHANGED_BY;
+      LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+      LastChangedAt      = LAST_CHANGED_AT;
+    }
+
+  association _Empl;
+  association _ESkillHist { create; }
+}
+
+define behavior for ZR_ESkillHistTP alias ESkillHist
+implementation in class ZBP_R_ESkillHistTP unique
+persistent table zdrm_empsh
+etag master LocalLastChangedAt
+lock dependent by _Empl
+authorization dependent by _Empl
+
+{
+  field ( readonly )
+  SID,
+  EID,
+  LocalLastChangedAt;
+
+  field ( readonly : update )
+  ShID;
+
+
+  update;
+  delete;
+
+  mapping for zdrm_empsh
+    {
+      SID                = SID;
+      ShID               = SHID;
+      EID                = EID;
+      Projname           = PROJNAME;
+      Projyear           = PROJYEAR;
+      LocalCreatedBy     = LOCAL_CREATED_BY;
+      LocalCreatedAt     = LOCAL_CREATED_AT;
+      LocalLastChangedBy = LOCAL_LAST_CHANGED_BY;
+      LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+      LastChangedAt      = LAST_CHANGED_AT;
+    }
+
+  association _Skills;
+  association _Empl;
+}

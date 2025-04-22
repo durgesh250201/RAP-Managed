@@ -1,0 +1,123 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'Skills', 
+    typeNamePlural: 'Skillss', 
+    title: {
+      type: #STANDARD, 
+      label: 'Skills', 
+      value: 'SID'
+    }
+  }, 
+  presentationVariant: [ {
+    sortOrder: [ {
+      by: 'SID', 
+      direction: #DESC
+    } ], 
+    visualizations: [ {
+      type: #AS_LINEITEM
+    } ]
+  } ]
+}
+annotate view ZC_Skills02TP with
+{
+  @UI.facet: [ {
+    id: 'idSkills', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Skills', 
+    position: 10 
+  }, 
+  {
+    id: 'idESkillHist', 
+    type: #LINEITEM_REFERENCE, 
+    label: 'ESkillHist', 
+    position: 20 , 
+    targetElement: '_ESkillHist'
+  } ]
+  @UI.lineItem: [ {
+    position: 10 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 10 
+  } ]
+  EID;
+  
+  @UI.lineItem: [ {
+    position: 20 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 20 
+  } ]
+  SID;
+  
+  @UI.lineItem: [ {
+    position: 30 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 30 
+  } ]
+  Sname;
+  
+  @UI.lineItem: [ {
+    position: 40 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 40 
+  } ]
+  Exp;
+  
+  @UI.lineItem: [ {
+    label: 'Hotskill',
+    position: 50 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    label: 'Hotskill',
+    position: 50 
+  } ]
+  Hotskill;
+  
+  @UI.lineItem: [ {
+    position: 60 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 60 
+  } ]
+  LocalCreatedBy;
+  
+  @UI.lineItem: [ {
+    position: 70 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 70 
+  } ]
+  LocalCreatedAt;
+  
+  @UI.lineItem: [ {
+    position: 80 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 80 
+  } ]
+  LocalLastChangedBy;
+  
+  @UI.hidden: true
+  LocalLastChangedAt;
+  
+  @UI.lineItem: [ {
+    position: 100 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 100 
+  } ]
+  LastChangedAt;
+}
